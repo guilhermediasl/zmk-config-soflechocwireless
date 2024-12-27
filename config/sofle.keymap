@@ -15,6 +15,9 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/keys.h>
+
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1500  // default: 600
+
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
 
@@ -49,7 +52,7 @@
 
         /* WS2812 */
 
-        chain-length = <30>;
+        chain-length = <29>;
         spi-one-frame = <0x70>;
         spi-zero-frame = <0x40>;
         color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
@@ -91,17 +94,17 @@
             // TODO: Some binds are waiting for shifted keycode support.
             // ------------------------------------------------------------------------------------------------------------
             // |       |  F1 |  F2 |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
-            // | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   | PGUP |   7   |   UP  |   9  |    0  |  F12  |
-            // |       |  !  |MLEFT| M UP |MRIGHT|  %   |                   | PGDN |  LEFT |  DOWN |RIGHT |   )   |   |   |
+            // | BTCLR | BT1 | BT2 |  M UP|  BT4 |  BT5 |                   | PGUP |   7   |   UP  |   9  |    0  |  F12  |
+            // |       |  !  |MLEFT| MDOWN|MRIGHT|      |                   | PGDN |  LEFT |  DOWN |RIGHT |   )   |   |   |
             // |       |  =  |  -  |  |   |  =   |  -   |        |  |       |  RGB |  ]    |  ;    |  :   |   \   |       |
             //               |     |      |      |      |        |  |       |      |       |       |      |
 
             bindings = <
-&trans      &kp F1        &kp F2          &kp F3          &kp F4           &kp F5                          &kp F6           &kp F7           &kp F8           &kp F9      &kp F10   &kp F11
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3     &mkp LCLK                   &kp PG_UP        &kp N7           &kp UP           &kp N9      &kp N0    &kp F12
-&trans      &kp EXCL      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans                          &kp PG_DN        &kp LEFT         &kp DOWN         &kp RIGHT   &kp RPAR  &kp PIPE
-&trans      &trans        &kp PIPE        &kp GRAVE       &kp EQUAL        &kp MINUS     &trans    &trans  &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &bl BL_TOG  &kp BSLH  &trans
-                          &trans          &trans          &trans           &trans        &trans    &trans  &trans           &trans           &trans           &trans
+&trans      &kp F1        &kp F2          &kp F3          &kp F4           &kp F5                              &kp F6           &kp F7           &kp F8           &kp F9      &kp F10   &kp F11
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1    &mmv MOVE_UP    &mkp LCLK        &mkp RCLK                           &kp PG_UP        &kp N7           &kp UP           &kp N9      &kp N0    &kp F12
+&trans      &kp EXCL      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans                              &kp PG_DN        &kp LEFT         &kp DOWN         &kp RIGHT   &kp RPAR  &kp PIPE
+&trans      &trans        &kp PIPE        &kp GRAVE       &kp EQUAL        &kp MINUS     &trans    &bl BL_TOG  &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &bl BL_TOG  &kp BSLH  &trans
+            &trans        &trans          &trans          &trans           &trans        &trans    &trans      &trans           &trans           &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -120,7 +123,7 @@
 &trans      &kp INS       &kp PSCRN     &kp K_CMENU   &trans        &trans                                   &kp PG_UP  &trans    &kp UP    &trans     &kp N0   &trans
 &trans      &kp LALT      &kp LCTRL     &kp LSHFT     &trans        &kp CLCK                                 &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &kp DEL  &kp BSPC
 &trans      &kp K_UNDO    &kp K_CUT     &kp K_COPY    &kp K_PASTE   &trans        &trans    &rgb_ug RGB_TOG  &trans     &trans    &trans    &trans     &trans   &trans
-                          &trans        &trans        &trans        &trans        &trans    &trans           &trans     &trans    &trans    &trans
+            &trans        &trans        &trans        &trans        &trans        &trans    &trans           &trans     &trans    &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
