@@ -92,14 +92,14 @@
             // ------------------------------------------------------------------------------------------------------------
             // |       |  F1 |  F2 |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
             // | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   | PGUP |   7   |   UP  |   9  |    0  |  F12  |
-            // |       |  !  |  @  |  #   |  $   |  %   |                   | PGDN |  LEFT |  DOWN |RIGHT |   )   |   |   |
+            // |       |  !  |MLEFT| M UP |MRIGHT|  %   |                   | PGDN |  LEFT |  DOWN |RIGHT |   )   |   |   |
             // |       |  =  |  -  |  |   |  =   |  -   |        |  |       |  RGB |  ]    |  ;    |  :   |   \   |       |
             //               |     |      |      |      |        |  |       |      |       |       |      |
 
             bindings = <
 &trans      &kp F1        &kp F2          &kp F3          &kp F4           &kp F5                          &kp F6           &kp F7           &kp F8           &kp F9      &kp F10   &kp F11
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3     &bt BT_SEL 4                    &kp PG_UP        &kp N7           &kp UP           &kp N9      &kp N0    &kp F12
-&trans      &kp EXCL      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &kp PRCNT                       &kp PG_DN        &kp LEFT         &kp DOWN         &kp RIGHT   &kp RPAR  &kp PIPE
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3     &mkp LCLK                   &kp PG_UP        &kp N7           &kp UP           &kp N9      &kp N0    &kp F12
+&trans      &kp EXCL      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans                          &kp PG_DN        &kp LEFT         &kp DOWN         &kp RIGHT   &kp RPAR  &kp PIPE
 &trans      &trans        &kp PIPE        &kp GRAVE       &kp EQUAL        &kp MINUS     &trans    &trans  &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &bl BL_TOG  &kp BSLH  &trans
                           &trans          &trans          &trans           &trans        &trans    &trans  &trans           &trans           &trans           &trans
             >;
