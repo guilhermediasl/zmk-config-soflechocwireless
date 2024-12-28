@@ -20,7 +20,6 @@
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
-#include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
 
 &pinctrl {
@@ -105,7 +104,7 @@
 &kp PSCRN  &kp F1  &kp F2          &kp F3          &kp F4           &kp F5                           &kp F6           &kp F7           &kp F8           &kp F9      &kp F10   &kp F11
 &trans     &trans  &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &mkp RCLK                        &kp PG_UP        &trans           &kp UP           &trans      &trans    &kp F12
 &trans     &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans                           &kp PG_DN        &kp LEFT         &kp DOWN         &kp RIGHT   &trans    &trans
-&trans     &trans  &kp PIPE        &kp TILDE       &kp EQUAL        &kp MINUS  &trans    &bl BL_TOG  &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &bl BL_TOG  &kp BSLH  &trans
+&trans     &mo 2   &kp PIPE        &kp TILDE       &kp EQUAL        &kp MINUS  &trans    &bl BL_TOG  &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &bl BL_TOG  &kp BSLH  &trans
                    &bt BT_SEL 0    &bt BT_SEL 1    &trans           &kp RGUI   &trans    &kp HOME    &kp END          &trans           &trans           &trans
             >;
 
@@ -113,22 +112,21 @@
         };
 
         raise_layer {
-            // ------------------------------------------------------------------------------------------------------------
-            // |BTCLR| BT1  | BT2  |  BT3  |  BT4  |  BT5 |                 |      |      |       |      |       |       |
-            // |     | INS  | PSCR | GUI   |       |      |                 | PGUP |      |   ^   |      |       |       |
-            // |     | ALT  | CTRL | SHIFT |       | CAPS |                 | PGDN |   <- |   v   |  ->  |  DEL  | BKSPC |
-            // |     | UNDO | CUT  | COPY  | PASTE |      |      |   | RGB  |      |      |       |      |       |       |
-            //              |      |       |       |      |      |   |      |      |      |       |      |
-
+// ------------------------------------------------------------------------------------------------------------
+// |     |  F1  |  F2  |  F3   |  F4   |  F5  |                |  F6  |  F7  |  F8   |  F9  |  F10  |  F11  |
+// |     | BT1  | BT2  |  BT3  |  BT4  |  BT5 |                | PGUP |  END |   ^   | HOME |  INS  |  F12  |
+// |     | RGBT | RGB- | RGB+  |  BR-  |  BR+ |                | PGDN |   <- |   v   | ->   |  DEL  | C/CAPS|
+// |     |BTCLR | HUD  | HUI   |  SAD  |  SAI |      |  |      | SCRL | PRVS | PLAY  | NEXT |  PSCR |       |
+//              |      |       |       |      |      |  |      |      |      |       |      |
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                             &trans     &trans    &trans    &trans     &trans   &trans
-&trans      &kp INS       &kp PSCRN     &kp K_CMENU   &trans        &trans                                   &kp PG_UP  &trans    &kp UP    &trans     &kp N0   &trans
-&trans      &kp LALT      &kp LCTRL     &kp LSHFT     &trans        &kp CLCK                                 &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &kp DEL  &kp BSPC
-&trans      &kp K_UNDO    &kp K_CUT     &kp K_COPY    &kp K_PASTE   &trans        &trans    &rgb_ug RGB_TOG  &trans     &trans    &trans    &trans     &trans   &trans
-                          &trans        &trans        &trans        &trans        &trans    &trans           &trans     &trans    &trans    &trans
+&trans &kp F1          &kp F2          &kp F3          &kp F4          &kp F5                         &kp F6             &kp F7     &kp F8   &kp F9     &kp F10   &kp F11
+&trans &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4                   &kp PG_UP          &kp END    &kp UP   &kp HOME   &kp INS   &kp F12
+&trans &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF &rgb_ug RGB_BRD &rgb_ug RGB_BRI                &kp PG_DN          &kp LEFT   &kp DOWN &kp RIGHT  &kp DEL   &mt RCTRL CLCK
+&trans &bt BT_CLR      &rgb_ug RGB_HUD &rgb_ug RGB_HUI &rgb_ug RGB_SAD &rgb_ug RGB_SAI &trans  &trans &kp SLCK           &kp C_PREV &kp C_PP &kp C_NEXT &kp PSCRN &trans
+                       &trans          &trans          &trans          &trans          &trans  &trans &ext_power EP_TOG  &trans     &trans   &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_DN PG_UP>;
         };
     };
 };
