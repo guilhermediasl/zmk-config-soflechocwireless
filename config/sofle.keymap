@@ -24,46 +24,44 @@
 
 &pinctrl {
     spi3_default: spi3_default {
-        group1 { psels = <NRF_PSEL(SPIM_MOSI, 0, 8)>; };
+        group1 { psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>; };
     };
 
     spi3_sleep: spi3_sleep {
         group1 {
-            psels = <NRF_PSEL(SPIM_MOSI, 0, 8)>;
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>;
             low-power-enable;
         };
     };
 };
 
-&spi1 {
-	compatible = "nordic,nrf-spim";
-	/* Cannot be used together with i2c0. */
-	status = "okay";
-	mosi-pin = <6>;
-	// Unused pins, needed for SPI definition, but not used by the ws2812 driver itself.
-	sck-pin = <5>;
-	miso-pin = <7>;
+&spi3 {
+    compatible = "nordic,nrf-spim";
+    status = "okay";
+    pinctrl-0 = <&spi3_default>;
+    pinctrl-1 = <&spi3_sleep>;
+    pinctrl-names = "default", "sleep";
 
-	led_strip: ws2812@0 {
-		compatible = "worldsemi,ws2812-spi";
-		label = "WS2812";
+    led_strip: ws2812@0 {
+        compatible = "worldsemi,ws2812-spi";
+        label = "WS2812";
 
-		/* SPI */
-		reg = <0>; /* ignored, but necessary for SPI bindings */
-		spi-max-frequency = <4000000>;
+        /* SPI */
 
-		/* WS2812 */
-		chain-length = <35>; /* There are per-key RGB, but the first 6 are underglow */
-		spi-one-frame = <0x70>;
-		spi-zero-frame = <0x40>;
-		color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
-	};
+        reg = <0>; /* ignored, but necessary for SPI bindings */
+        spi-max-frequency = <4000000>;
+
+        /* WS2812 */
+
+        chain-length = <29>;
+        spi-one-frame = <0x70>;
+        spi-zero-frame = <0x40>;
+        color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
+    };
 };
 
 / {
-	chosen {
-		zmk,underglow = &led_strip;
-	};
+    chosen { zmk,underglow = &led_strip; };
 };
 
 /* END temporary RGB support section */
@@ -106,7 +104,7 @@
 &kp PSCRN  &kp F1  &kp F2          &kp F3          &kp F4           &kp F5                           &kp F6           &kp F7           &kp F8           &kp F9      &kp F10   &kp F11
 &trans     &trans  &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &mkp RCLK                        &kp PG_UP        &trans           &kp UP           &trans      &trans    &kp F12
 &trans     &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans                           &kp PG_DN        &kp LEFT         &kp DOWN         &kp RIGHT   &trans    &trans
-&trans     &mo 2   &kp PIPE        &kp TILDE       &kp EQUAL        &kp MINUS  &trans    &bl BL_TOG  &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &bl BL_TOG  &kp BSLH  &trans
+&trans     &trans  &kp PIPE        &kp TILDE       &kp EQUAL        &kp MINUS  &trans    &bl BL_TOG  &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &bl BL_TOG  &kp BSLH  &trans
                    &bt BT_SEL 0    &bt BT_SEL 1    &trans           &kp RGUI   &trans    &kp HOME    &kp END          &trans           &trans           &trans
             >;
 
@@ -114,21 +112,22 @@
         };
 
         raise_layer {
-// ------------------------------------------------------------------------------------------------------------
-// |     |  F1  |  F2  |  F3   |  F4   |  F5  |                |  F6  |  F7  |  F8   |  F9  |  F10  |  F11  |
-// |     | BT1  | BT2  |  BT3  |  BT4  |  BT5 |                | PGUP |  END |   ^   | HOME |  INS  |  F12  |
-// |     | RGBT | RGB- | RGB+  |  BR-  |  BR+ |                | PGDN |   <- |   v   | ->   |  DEL  | C/CAPS|
-// |     |BTCLR | HUD  | HUI   |  SAD  |  SAI |      |  |      | SCRL | PRVS | PLAY  | NEXT |  PSCR |       |
-//              |      |       |       |      |      |  |      |      |      |       |      |
+            // ------------------------------------------------------------------------------------------------------------
+            // |BTCLR| BT1  | BT2  |  BT3  |  BT4  |  BT5 |                 |      |      |       |      |       |       |
+            // |     | INS  | PSCR | GUI   |       |      |                 | PGUP |      |   ^   |      |       |       |
+            // |     | ALT  | CTRL | SHIFT |       | CAPS |                 | PGDN |   <- |   v   |  ->  |  DEL  | BKSPC |
+            // |     | UNDO | CUT  | COPY  | PASTE |      |      |   | RGB  |      |      |       |      |       |       |
+            //              |      |       |       |      |      |   |      |      |      |       |      |
+
             bindings = <
-&trans &kp F1          &kp F2          &kp F3          &kp F4          &kp F5                         &kp F6             &kp F7     &kp F8   &kp F9     &kp F10   &kp F11
-&trans &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4                   &kp PG_UP          &kp END    &kp UP   &kp HOME   &kp INS   &kp F12
-&trans &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF &rgb_ug RGB_BRD &rgb_ug RGB_BRI                &kp PG_DN          &kp LEFT   &kp DOWN &kp RIGHT  &kp DEL   &mt RCTRL CLCK
-&trans &bt BT_CLR      &rgb_ug RGB_HUD &rgb_ug RGB_HUI &rgb_ug RGB_SAD &rgb_ug RGB_SAI &trans  &trans &kp SLCK           &kp C_PREV &kp C_PP &kp C_NEXT &kp PSCRN &trans
-                       &trans          &trans          &trans          &trans          &trans  &trans &ext_power EP_TOG  &trans     &trans   &trans
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                             &trans     &trans    &trans    &trans     &trans   &trans
+&trans      &kp INS       &kp PSCRN     &kp K_CMENU   &trans        &trans                                   &kp PG_UP  &trans    &kp UP    &trans     &kp N0   &trans
+&trans      &kp LALT      &kp LCTRL     &kp LSHFT     &trans        &kp CLCK                                 &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &kp DEL  &kp BSPC
+&trans      &kp K_UNDO    &kp K_CUT     &kp K_COPY    &kp K_PASTE   &trans        &trans    &rgb_ug RGB_TOG  &trans     &trans    &trans    &trans     &trans   &trans
+                          &trans        &trans        &trans        &trans        &trans    &trans           &trans     &trans    &trans    &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_DN PG_UP>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
     };
 };
