@@ -3,11 +3,3 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    container:
-      image: zmkfirmware/zmk-dev-arm:2.5
-      steps:
-        - name: Patch Zephyr OLED
-          working-directory: ./zephyr
-          run: |
-            wget https://github.com/zmkfirmware/zmk/files/8009722/zephyr_oled_i2c_fix_full_init.diff.txt
-            git apply zephyr_oled_i2c_fix_full_init.diff.txt
