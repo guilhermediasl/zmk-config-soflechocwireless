@@ -13,7 +13,7 @@
 
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1800  // default: 600
 #define DISPLAY_INIT_PRIORITY 95
-#define ZMK_MOUSE_SCRL_VAL 140
+
 
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors.dtsi>
@@ -82,10 +82,10 @@
     // };
 
     behaviors {
-        scroll_up_down: behavior_sensor_rotate_mouse_wheel_up_down {
-            compatible = "zmk,behavior-sensor-rotate";
+        behavior_sensor_rotate_mouse: behavior_sensor_rotate_mouse {
+            compatible = "zmk,behavior-sensor-rotate-var";
             label = "BEHAVIOR_SENSOR_ROTATE_MOUSE";
-            #sensor-binding-cells = <0>;
+            #sensor-binding-cells = <2>;
             bindings = <&msc>, <&msc>;
             tap-ms = <20>;
         };
@@ -133,7 +133,7 @@
 
             sensor-bindings =
                 <&inc_dec_kp C_VOL_DN C_VOL_UP>,
-                <&scroll_up_down SCRL_DOWN SCRL_UP>;
+                <&inc_dec_kp PG_UP PG_DN>;
         };
 
         OLD2LAYER {
