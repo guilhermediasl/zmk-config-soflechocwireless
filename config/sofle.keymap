@@ -80,6 +80,16 @@
     //     };
     // };
 
+    behaviors {
+        Rot_Mouse: Rot_Mouse {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            label = "ROT_MOUSE";
+            #sensor-binding-cells = <2>;
+            bindings = <&msc>, <&msc>;
+
+            tap-ms = <4>;
+        };
+    };
 
     keymap {
         compatible = "zmk,keymap";
@@ -102,7 +112,7 @@
 
             sensor-bindings =
                 <&inc_dec_kp C_VOL_DN C_VOL_UP>,
-                <&inc_dec_kp PG_UP PG_DN>;
+                <&Rot_Mouse SCRL_UP SCRL_DOWN>;
         };
 
         lower_layer {
