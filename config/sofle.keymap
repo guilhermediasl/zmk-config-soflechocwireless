@@ -86,7 +86,17 @@
             label = "BEHAVIOR_SENSOR_ROTATE_MOUSE";
             #sensor-binding-cells = <2>;
             bindings = <&msc>, <&msc>;
+
             tap-ms = <20>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        ToggleLow {
+            bindings = <&tog 1>;
+            key-positions = <52 57>;
         };
     };
 
