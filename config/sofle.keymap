@@ -82,12 +82,11 @@
     // };
 
     behaviors {
-        behavior_sensor_rotate_mouse: behavior_sensor_rotate_mouse {
-            compatible = "zmk,behavior-sensor-rotate-var";
+        scroll_up_down: behavior_sensor_rotate_mouse_wheel_up_down {
+            compatible = "zmk,behavior-sensor-rotate";
             label = "BEHAVIOR_SENSOR_ROTATE_MOUSE";
-            #sensor-binding-cells = <2>;
+            #sensor-binding-cells = <0>;
             bindings = <&msc>, <&msc>;
-
             tap-ms = <20>;
         };
     };
@@ -134,7 +133,7 @@
 
             sensor-bindings =
                 <&inc_dec_kp C_VOL_DN C_VOL_UP>,
-                <&behavior_sensor_rotate_mouse SCRL_DOWN SCRL_UP>;
+                <&scroll_up_down SCRL_DOWN SCRL_UP>;
         };
 
         OLD2LAYER {
