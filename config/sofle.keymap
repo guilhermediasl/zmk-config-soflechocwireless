@@ -121,8 +121,8 @@
             >;
 
             sensor-bindings =
-                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                <&inc_dec_kp PAGE_UP PG_DN>;
+                <&inc_dec_kp PG_DN PAGE_UP>,
+                <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         lower_layer {
@@ -144,8 +144,8 @@
             >;
 
             sensor-bindings =
-                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                <&inc_dec_kp PG_DN PG_DN>;
+                <&inc_dec_kp PG_DN PAGE_UP>,
+                <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         //         OLD2LAYER {
