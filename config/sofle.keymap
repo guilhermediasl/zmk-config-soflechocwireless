@@ -167,8 +167,8 @@
             >;
 
             sensor-bindings =
-                <&inc_dec_mwh SCROLL_DOWN SCROLL_UP>,
-                <&inc_dec_mwh SCROLL_RIGHT SCROLL_LEFT>;
+                <&inc_dec_kp PG_DN PAGE_UP>,
+                <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         lower_layer {
