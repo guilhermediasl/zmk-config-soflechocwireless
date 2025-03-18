@@ -11,10 +11,6 @@
 #include <dt-bindings/zmk/pointing.h>
 
 / {
-    chosen { zmk,underglow = &led_strip; };
-};
-
-/ {
     behaviors {
         behavior_sensor_rotate_mouse: behavior_sensor_rotate_mouse {
             compatible = "zmk,behavior-sensor-rotate-var";
