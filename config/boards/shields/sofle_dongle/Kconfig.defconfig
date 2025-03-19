@@ -34,5 +34,6 @@ choice ZMK_DISPLAY_WORK_QUEUE
 endchoice
 
 endif
+endif
 
 endif
