@@ -10,44 +10,6 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 
-&pinctrl {
-    spi3_default: spi3_default {
-        group1 { psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>; };
-    };
-
-    spi3_sleep: spi3_sleep {
-        group1 {
-            psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>;
-            low-power-enable;
-        };
-    };
-};
-
-&spi3 {
-    compatible = "nordic,nrf-spim";
-    status = "okay";
-    pinctrl-0 = <&spi3_default>;
-    pinctrl-1 = <&spi3_sleep>;
-    pinctrl-names = "default", "sleep";
-
-    led_strip: ws2812@0 {
-        compatible = "worldsemi,ws2812-spi";
-        label = "WS2812";
-
-        /* SPI */
-
-        reg = <0>; /* ignored, but necessary for SPI bindings */
-        spi-max-frequency = <4000000>;
-
-        /* WS2812 */
-
-        chain-length = <29>;
-        spi-one-frame = <0x70>;
-        spi-zero-frame = <0x40>;
-        color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
-    };
-};
-
 / {
     behaviors {
         behavior_sensor_rotate_mouse: behavior_sensor_rotate_mouse {
@@ -118,7 +80,7 @@
         };
 
         lower_layer {
-            display-name = "Lower";
+            display-name = "Navegation";
 
             // ------------------------------------------------------------------------------------------------------------
             // | Print |  F1 |  F2  |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
@@ -131,7 +93,7 @@
 &kp PSCRN  &kp F1          &kp F2          &kp F3        &kp F4           &kp F5                                   &kp F6     &kp F7    &kp F8    &kp F9        &kp F10   &kp F11
 &trans     &kp EXCL        &kp AT          &kp HASH      &kp DLLR         &kp PRCNT                                &kp CARET  &kp AMPS  &kp UP    &kp LPAR      &kp RPAR  &kp F12
 &trans     &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &mkp LCLK                                &trans     &kp LEFT  &kp DOWN  &kp RIGHT     &trans    &trans
-&trans     &kp EXCL        &kp PIPE        &kp TILDE     &kp EQUAL        &kp MINUS  &studio_unlock    &sys_reset  &kp CARET  &kp AMPS  &kp STAR  &kp LPAR      &kp RPAR  &kp BACKSLASH
+&trans     &kp EXCL        &kp PIPE        &kp TILDE     &kp EQUAL        &kp MINUS  &trans    &sys_reset  &kp CARET  &kp AMPS  &kp STAR  &kp LPAR      &kp RPAR  &kp BACKSLASH
                            &bt BT_SEL 0    &bt BT_SEL 1  &trans           &kp RGUI   &trans            &kp HOME    &kp END    &trans    &trans    &out OUT_TOG
             >;
 
