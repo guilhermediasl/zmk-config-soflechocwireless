@@ -20,6 +20,12 @@
             tap-ms = <20>;
         };
 
+        rot_kp: sensor_rotate_kp {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
 
         hrl: ZMK_HOLD_TAP_Left {
             compatible = "zmk,behavior-hold-tap";
@@ -75,7 +81,7 @@
             >;
 
             sensor-bindings =
-                <&inc_dec_kp PG_DN PAGE_UP>,
+                <&rot_kp PG_DN PAGE_UP>,
                 <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
