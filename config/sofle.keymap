@@ -58,6 +58,11 @@
             bindings = <&tog 1>;
             key-positions = <52 57>;
         };
+
+        UnlockStudio {
+            bindings = <&studio_unlock>;
+            key-positions = <43 42>;
+        };
     };
 
     keymap {
@@ -82,7 +87,7 @@
             >;
 
             sensor-bindings =
-                <&rot_kp PG_DN PAGE_UP>,
+                <&inc_dec_kp PG_DN PAGE_UP>,
                 <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
