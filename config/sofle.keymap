@@ -60,10 +60,6 @@
 // };
 
 / {
-    chosen { zmk,underglow = &led_strip; };
-};
-
-/ {
     // behaviors {
     //     bhm: balanced_homerow_mods {
     //         compatible = "zmk,behavior-hold-tap";
