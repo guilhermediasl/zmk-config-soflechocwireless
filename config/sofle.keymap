@@ -45,7 +45,7 @@
     x-input-code = <INPUT_REL_HWHEEL>;
     y-input-code = <INPUT_REL_WHEEL>;
     time-to-max-speed-ms = <900>;
-    acceleration-exponent = <2>;
+    acceleration-exponent = <1>;
 };
 
 // &spi3 {
