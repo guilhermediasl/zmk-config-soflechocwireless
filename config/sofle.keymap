@@ -12,7 +12,7 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1800  // default: 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 300
 #define DISPLAY_INIT_PRIORITY 95
-#define ZMK_MOUSE_SCRL_VAL 140
+#define ZMK_MOUSE_SCRL_VAL 300
 
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors.dtsi>
@@ -88,7 +88,7 @@
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             tap-ms = <20>;
-            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
 };
 
         td_shcp: tap_dance_shift_caps {
