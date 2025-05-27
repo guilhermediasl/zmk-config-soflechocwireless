@@ -9,7 +9,7 @@
  * GitHub Issue: https://github.com/zmkfirmware/zmk/issues/885
  */
 
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 180  // default: 600
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1800  // default: 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 1200
 #define DISPLAY_INIT_PRIORITY 95
 #define ZMK_MOUSE_SCRL_VAL 100
