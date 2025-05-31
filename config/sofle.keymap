@@ -63,40 +63,20 @@
 // };
 
 / {
-    // behaviors {
-    //     bhm: balanced_homerow_mods {
-    //         compatible = "zmk,behavior-hold-tap";
-    //         #binding-cells = <2>;
-    //         tapping-term-ms = <200>;    // <---[[moderate duration]]
-    //         quick-tap-ms = <0>;
-    //         flavor = "balanced";
-    //         bindings = <&kp>, <&kp>;
-    //     };
-    // };
-
     behaviors {
-        bsrm: behavior_sensor_rotate_mouse {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            label = "BEHAVIOR_SENSOR_ROTATE_MOUSE";
-            #sensor-binding-cells = <2>;
-            bindings = <&msc>, <&msc>;
-
-            tap-ms = <20>;
-        };
-
         scroll_up_down: behavior_sensor_rotate_mouse_wheel_up_down {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
             tap-ms = <20>;
+            debounce-press-ms = <3>;
+            debounce-release-ms = <3>;
 };
 
         td_shcp: tap_dance_shift_caps {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-
             //tapping-term-ms = <200>;
-
             bindings = <&kp LSHIFT>, <&caps_word>;
         };
     };
