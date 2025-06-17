@@ -10,7 +10,7 @@
  */
 
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 800  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 120
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 50
 #define DISPLAY_INIT_PRIORITY 95
 #define ZMK_MOUSE_SCRL_VAL 100
 
@@ -68,7 +68,7 @@
         scroll_up_down: behavior_sensor_rotate_mouse_wheel_up_down {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&msc MOVE_Y(-400)>, <&msc MOVE_Y(400)>;
+            bindings = <&msc MOVE_Y(-600)>, <&msc MOVE_Y(600)>;
             tap-ms = <20>;
 };
 
