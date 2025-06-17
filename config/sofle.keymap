@@ -10,9 +10,9 @@
  */
 
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 800  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 1200
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 50
 #define DISPLAY_INIT_PRIORITY 95
-#define ZMK_MOUSE_SCRL_VAL 10
+#define ZMK_MOUSE_SCRL_VAL 100
 
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors.dtsi>
