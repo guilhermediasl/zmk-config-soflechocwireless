@@ -48,7 +48,6 @@
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-
             tap-ms = <20>;
         };
 
@@ -56,16 +55,13 @@
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_RIGHT>, <&msc SCRL_LEFT>;
-
             tap-ms = <20>;
         };
 
         td_shcp: tap_dance_shift_caps {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-
             //tapping-term-ms = <200>;
-
             bindings = <&kp LSHIFT>, <&caps_word>;
         };
     };
@@ -94,13 +90,13 @@
 
         default_layer {
             display-name = "Base";
-
-            // ------------------------------------------------------------------------------------------------------------------
-            // |Gr ESC |  1  |  2  |  3   |  4   |  5   |                        |  6   |  7    |  8    |  9   |   0   | GRAVE |
-            // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                        |  Y   |  U    |  I    |  O   |   P   |   '   |
-            // |TdSHIFT|  A  |  S  |  D   |  F   |  G   |                        |  H   |  J    |  K    |  L   |   ;   |   [   |
-            // | CTRL  |  Z  |  X  |  C   |  V   |  B   |  MUTE  |       |Tog Nav|  N   |  M    |  ,    |  .   |   /   |   ]   |
-            //               | LEFT| RIGHT| LOWER| BSCP |  L ALT |       | ENTER | SPACE|  DEL  |  UP   | DOWN |
+// -----------------------------------------------------------------------------------------------------------
+// |Gr ESC |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   | GRAVE |
+// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |   '   |
+// |TdSHIFT|  A  |  S  |  D   |  F   |  G   |________    _______|  H   |  J    |  K    |  L   |   ;   |   [   |
+// | CTRL  |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |Tog Nav|  N   |  M    |  ,    |  .   |   /   |   ]   |
+//               | LEFT| RIGHT| LOWER| BSCP |  L ALT |  | ENTER | SPACE|  DEL  |  UP   | DOWN |
+// -----------------------------------------------------------------------------------------------------------
 
             bindings = <
 &gresc     &kp N1  &kp N2    &kp N3     &kp N4  &kp N5                                &kp N6     &kp N7   &kp N8     &kp N9    &kp N0    &kp GRAVE
@@ -109,19 +105,18 @@
 &kp LCTRL  &kp Z   &kp X     &kp C      &kp V   &kp B     &kp LC(LS(M))    &tog 2     &kp N      &kp M    &kp COMMA  &kp DOT   &kp FSLH  &kp RBKT
                    &kp LEFT  &kp RIGHT  &mo 1   &kp BSPC  &kp LEFT_ALT     &kp ENTER  &kp SPACE  &kp DEL  &kp UP     &kp DOWN
             >;
-
             sensor-bindings = <&scroll_up_down>, <&scroll_left_right>;
         };
 
         lower_layer {
             display-name = "Symbols";
-
-            // ------------------------------------------------------------------------------------------------------------
-            // | Print |  F1 |  F2  |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
-            // |       |  !  |  @   |  #   |  $   |  %   |                   |  ^   |  &    |  UP   |  (   |   )   |  F12  |
-            // |       |MLEFT|MDOWN | MVUP |MRIGHT|LCLICK|                   | PGDN |  LEFT |  DOWN |RIGHT |       |       |
-            // |       |  !  | PIPE |  ~   |  =   |  -   |ExtPower|  |       |  ^   |   &   |   *   |  (   |   \   |       |
-            //               |BLT 0 |BLT 1 |      |      |        |  |       |      |       |       |      |
+// ------------------------------------------------------------------------------------------------------------
+// | Print |  F1 |  F2  |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
+// |       |  !  |  @   |  #   |  $   |  %   |                   |  ^   |  &    |  UP   |  (   |   )   |  F12  |
+// |       |MLEFT|MDOWN | MVUP |MRIGHT|LCLICK|________    _______| PGDN |  LEFT |  DOWN |RIGHT |       |       |
+// |       |  !  | PIPE |  ~   |  =   |  -   |ExtPower|  |       |  ^   |   &   |   *   |  (   |   \   |       |
+//               |BLT 0 |BLT 1 |      |      |        |  |       |      |       |       |      |
+// ------------------------------------------------------------------------------------------------------------
 
             bindings = <
 &kp PSCRN  &kp F1          &kp F2          &kp F3        &kp F4           &kp F5                                    &kp F6     &kp F7    &kp F8    &kp F9        &kp F10        &kp F11
@@ -130,21 +125,18 @@
 &trans     &kp EXCL        &kp PIPE        &kp TILDE     &kp EQUAL        &kp MINUS  &ext_power EP_TOG    &trans    &kp CARET  &kp AMPS  &kp STAR  &kp LPAR      &kp BACKSLASH  &kp BACKSLASH
                            &bt BT_SEL 0    &bt BT_SEL 1  &mo 0            &kp RGUI   &trans               &kp HOME  &kp END    &trans    &trans    &out OUT_TOG
             >;
-
-            sensor-bindings =
-                <&scroll_left_right>,
-                <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&scroll_left_right>, <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         high_layer {
             display-name = "Mouse";
-
-            // ------------------------------------------------------------------------------------------------------------------
-            // |     |  F1  |  F2  |  F3  |  F4  |  F5  |                       |    F6     |     F7    |      F8     |     F9     |    F10    |  F11  |
-            // |     |      |      |      |      |      |                       | SCRL_UP   | LCLK      |  MOVE_UP    | RCLK       | SCRL_UP   |  F12  |
-            // |     |      |      |      |      |      |_______         _______| SCRL_DOWN | MOVE_LEFT |  MOVE_DOWN  | MOVE_RIGHT | SCRL_DOWN |       |
-            // |     |      |      |      |      |      |       |       |       | MCLK      | SCRL_LEFT |  SCRL_RIGHT |            |           |
-            //              |      |      |      |      |       |       |       |           |           |             |            |
+// --------------------------------------------------------------------------------------------------------------------
+// |     |  F1  |  F2  |  F3  |  F4  |  F5  |                       |    F6     |     F7    |      F8     |     F9     |    F10    |  F11  |
+// |     |      |      |      |      |      |                       | SCRL_UP   | LCLK      |  MOVE_UP    | RCLK       | SCRL_UP   |  F12  |
+// |     |      |      |      |      |      |_______         _______| SCRL_DOWN | MOVE_LEFT |  MOVE_DOWN  | MOVE_RIGHT | SCRL_DOWN |       |
+// |     |      |      |      |      |      |       |       |       | MCLK      | SCRL_LEFT |  SCRL_RIGHT |            |           |
+//              |      |      |      |      |       |       |       |           |           |             |            |
+// --------------------------------------------------------------------------------------------------------------------
 
             bindings = <
 &trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                    &kp F6            &kp F7          &kp F8          &kp F9           &kp F10           &kp F11
@@ -153,19 +145,18 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans            &mkp MCLK       &msc SCRL_LEFT  &msc SCRL_RIGHT  &trans            &trans
                 &trans  &trans  &trans  &trans  &trans    &trans  &trans            &trans          &trans          &trans
             >;
-
             sensor-bindings = <&scroll_up_down>, <&scroll_left_right>;
         };
 
         mouse_left {
             display-name = "LMouse";
-
-            // ------------------------------------------------------------------------------------------------------------------
-            // |     |  F1  |  F2  |  F3           |  F4          |  F5      |                       |  F6   |  F7   |  F8   |  F9   |  F10    |  F11   |
-            // |     |      | RCLK | MOVE_Y(50)    | LCLK         |          |                       |       |       |       |       |         |  F12   |
-            // |     |MOVE_L|MOVE_D| MOVE_UP       |MOVE_RIGHT    | LCLK     |                       |       |       |       |       |         |        |
-            // |     |      |      | MOVE_Y(-50)   |              |          |       |       |       |       |       |       |       |        |
-            //              |      |      |        |              |          |       |       |       |       |       |       |
+// -----------------------------------------------------------------------------------------------------------------------------
+// |     |  F1  |  F2  |  F3         |  F4       |  F5  |                    |  F6   |  F7   |  F8   |  F9   |  F10    |  F11   |
+// |     |      | RCLK | MOVE_Y(50)  | LCLK      |      |                    |       |       |       |       |         |  F12   |
+// |     |MOVE_L|MOVE_D| MOVE_UP     |MOVE_RIGHT | LCLK |_______      _______|       |       |       |       |         |        |
+// |     |      |      | MOVE_Y(-50) |           |      |       |    |       |       |       |       |       |         |
+//              |      |      |      |           |      |       |    |       |       |       |       |
+// -----------------------------------------------------------------------------------------------------------------------------
 
             bindings = <
 &trans  &kp F1         &kp F2           &kp F3           &kp F4           &kp F5                       &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
@@ -174,7 +165,6 @@
 &trans  &none          &none            &none            &none            &msc MOVE_Y(-50) &none     &trans    &trans  &trans  &trans  &trans  &trans  &trans   &trans
                        &trans           &trans           &trans           &trans     &trans    &trans  &trans  &trans  &trans  &trans
             >; 
-
             sensor-bindings = <&scroll_up_down>, <&scroll_left_right>;
         };
     };
