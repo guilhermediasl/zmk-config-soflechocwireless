@@ -27,7 +27,6 @@
 //     spi3_default: spi3_default {
 //         group1 { psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>; };
 //     };
-
 //     spi3_sleep: spi3_sleep {
 //         group1 {
 //             psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>;
@@ -49,20 +48,24 @@
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+
             tap-ms = <20>;
-};
+        };
 
         scroll_left_right: behavior_sensor_rotate_mouse_wheel_left_right {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_RIGHT>, <&msc SCRL_LEFT>;
+
             tap-ms = <20>;
         };
 
         td_shcp: tap_dance_shift_caps {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
+
             //tapping-term-ms = <200>;
+
             bindings = <&kp LSHIFT>, <&caps_word>;
         };
     };
@@ -78,6 +81,12 @@
         ToggleNavi {
             bindings = <&tog 2>;
             key-positions = <48 49>;
+        };
+
+        Toggle-left-mouse {
+            bindings = <&tog 3>;
+            key-positions = <41 40>;
+            layers = <3>;
         };
     };
 
@@ -102,9 +111,7 @@
                    &kp LEFT  &kp RIGHT  &mo 1   &kp BSPC  &kp LEFT_ALT     &kp ENTER  &kp SPACE  &kp DEL  &kp UP     &kp DOWN
             >;
 
-            sensor-bindings =
-                <&scroll_up_down>,
-                <&scroll_left_right>;
+            sensor-bindings = <&scroll_up_down>, <&scroll_left_right>;
         };
 
         lower_layer {
@@ -141,16 +148,14 @@
             //              |      |      |      |      |       |       |       |           |           |             |            |
 
             bindings = <
-&trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                    &kp F6           &kp F7          &kp F8          &kp F9          &kp F10           &kp F11
-&trans  &trans  &trans  &trans  &trans  &trans                    &msc MOVE_Y(50)  &mkp LCLK       &mmv MOVE_UP    &mkp RCLK       &msc MOVE_X(50)   &kp F12
-&trans  &trans  &trans  &trans  &trans  &trans                    &msc MOVE_Y(-50) &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT &msc MOVE_X(-50)  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans          &mkp MCLK       &msc SCRL_LEFT  &msc SCRL_RIGHT  &trans            &trans
-                &trans  &trans  &trans  &trans  &trans    &trans  &trans          &trans          &trans          &trans
+&trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                    &kp F6            &kp F7          &kp F8          &kp F9           &kp F10           &kp F11
+&trans  &trans  &trans  &trans  &trans  &trans                    &msc MOVE_Y(50)   &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &msc MOVE_X(50)   &kp F12
+&trans  &trans  &trans  &trans  &trans  &trans                    &msc MOVE_Y(-50)  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc MOVE_X(-50)  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans            &mkp MCLK       &msc SCRL_LEFT  &msc SCRL_RIGHT  &trans            &trans
+                &trans  &trans  &trans  &trans  &trans    &trans  &trans            &trans          &trans          &trans
             >;
 
-            sensor-bindings =
-                <&scroll_up_down>,
-                <&scroll_left_right>;
+            sensor-bindings = <&scroll_up_down>, <&scroll_left_right>;
         };
 
         mouse_left {
@@ -164,16 +169,14 @@
             //              |      |      |        |              |          |       |       |       |       |       |       |
 
             bindings = <
-&trans    &kp F1         &kp F2         &kp F3           &kp F4          &kp F5                      &kp F6  &kp F7  &kp F8  &kp F9  &kp F10   &kp F11
-&trans    &trans         &mkp RCLK      &msc MOVE_Y(50)  &mkp LCLK       &trans                      &trans  &trans  &trans  &trans  &trans    &kp F12
-&trans    &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP     &mmv MOVE_RIGHT &mkp LCLK                   &trans  &trans  &trans  &trans  &trans    &trans
-&trans    &trans         &trans         &msc MOVE_Y(-50) &trans          &trans     &trans  &trans   &trans  &trans  &trans  &trans  &trans    &trans
-                         &trans         &trans           &trans          &trans     &trans  &trans   &trans  &trans  &trans  &trans
+&trans  &kp F1          &kp F2          &kp F3            &kp F4           &kp F5                       &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
+&trans  &trans          &mkp RCLK       &msc MOVE_Y(50)   &mkp LCLK        &trans                       &trans  &trans  &trans  &trans  &trans   &kp F12
+&trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP      &mmv MOVE_RIGHT  &mkp LCLK                    &trans  &trans  &trans  &trans  &trans   &trans
+&trans  &trans          &trans          &msc MOVE_Y(-50)  &trans           &trans     &trans    &trans  &trans  &trans  &trans  &trans  &trans   &trans
+                        &trans          &trans            &trans           &trans     &trans    &trans  &trans  &trans  &trans  &trans
             >;
 
-            sensor-bindings =
-                <&scroll_up_down>,
-                <&scroll_left_right>;
+            sensor-bindings = <&scroll_up_down>, <&scroll_left_right>;
         };
     };
 };
