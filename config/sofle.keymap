@@ -86,7 +86,6 @@
         Toggle-left-mouse {
             bindings = <&tog 3>;
             key-positions = <41 40>;
-            layers = <3>;
         };
     };
 
