@@ -78,11 +78,6 @@
             bindings = <&tog 2>;
             key-positions = <48 49>;
         };
-
-        Toggle-left-mouse {
-            bindings = <&tog 3>;
-            key-positions = <41 40>;
-        };
     };
 
     keymap {
