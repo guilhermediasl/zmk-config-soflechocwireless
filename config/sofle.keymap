@@ -82,6 +82,11 @@
             bindings = <&tog 2>;
             key-positions = <48 49>;
         };
+
+        Bluetooth-Reparing {
+            bindings = <&bt BT_CLR>;
+            key-positions = <42 43>;
+        };
     };
 
     keymap {
