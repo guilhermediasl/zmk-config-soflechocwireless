@@ -14,7 +14,7 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: sofle_left
+    shield: sofle_left nice_oled
     cmake-args: -DKCONFIG_ERROR_ON_WARNINGS=OFF
   - board: nice_nano_v2
     shield: sofle_right nice_view_adapter nice_view
